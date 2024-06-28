@@ -15,22 +15,25 @@
     <Filter Include="Source Files\01. Main">
       <UniqueIdentifier>{f45a4b39-75e5-4fa7-92b1-c3ca1978d283}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\99. Headers\Windows">
+      <UniqueIdentifier>{a68e3f52-b4df-4ea1-b9dd-c464486c1c76}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectX11.h">
       <Filter>Source Files\01. Main</Filter>
     </ClInclude>
-    <ClInclude Include="framework.h">
-      <Filter>Source Files\99. Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>Source Files\99. Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Source Files\99. Headers</Filter>
-    </ClInclude>
     <ClInclude Include="pch.h">
       <Filter>Source Files\99. Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Source Files\99. Headers\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Source Files\99. Headers\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Source Files\99. Headers\Windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -51,7 +54,7 @@
       <Filter>Source Files\01. Main</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\99. Headers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
