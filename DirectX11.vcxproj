@@ -136,6 +136,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Types.h" />
+    <ClInclude Include="Values.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectX11.cpp" />
