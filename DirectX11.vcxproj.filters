@@ -35,6 +35,9 @@
     <ClInclude Include="targetver.h">
       <Filter>Source Files\99. Headers\Windows</Filter>
     </ClInclude>
+    <ClInclude Include="Types.h">
+      <Filter>Source Files\99. Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DirectX11.rc">
