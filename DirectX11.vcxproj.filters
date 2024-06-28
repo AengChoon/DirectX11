@@ -29,6 +29,9 @@
     <ClInclude Include="targetver.h">
       <Filter>Source Files\99. Headers</Filter>
     </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Source Files\99. Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DirectX11.rc">
@@ -46,6 +49,9 @@
   <ItemGroup>
     <ClCompile Include="DirectX11.cpp">
       <Filter>Source Files\01. Main</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
