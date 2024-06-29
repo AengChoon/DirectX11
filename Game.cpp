@@ -65,3 +65,25 @@ void CGame::CreateDeviceAndSwapChain()
 
 	Check(Result);
 }
+
+void CGame::CreateRenderTargetView()
+{
+	HRESULT Result;
+	Microsoft::WRL::ComPtr<ID3D11Texture2D> BackBuffer;
+
+	Result = SwapChain->GetBuffer
+	(
+		0,
+		__uuidof(ID3D11Texture2D),
+		reinterpret_cast<void**>(BackBuffer.GetAddressOf())
+	);
+	Check(Result);
+
+	Result = Device->CreateRenderTargetView
+	(
+		BackBuffer.Get(),
+		nullptr,
+		RenderTargetView.GetAddressOf()
+	);
+	Check(Result);
+}

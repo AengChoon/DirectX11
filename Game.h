@@ -16,6 +16,8 @@ public:
 private:
 	void CreateDeviceAndSwapChain();
 
+	void CreateRenderTargetView();
+
 private:
 	HWND WindowHandle;
 
@@ -28,5 +30,7 @@ private:
 	Microsoft::WRL::ComPtr<ID3D11DeviceContext> DeviceContext;
 
 	Microsoft::WRL::ComPtr<IDXGISwapChain> SwapChain;
+
+	Microsoft::WRL::ComPtr<ID3D11RenderTargetView> RenderTargetView;
 };
 
