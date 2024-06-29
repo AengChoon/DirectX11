@@ -14,6 +14,10 @@ public:
 	void Render();
 
 private:
+	void BeginRender();
+
+	void EndRender();
+
 	void CreateDeviceAndSwapChain();
 
 	void CreateRenderTargetView();

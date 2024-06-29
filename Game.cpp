@@ -27,6 +27,24 @@ void CGame::Update()
 
 void CGame::Render()
 {
+	BeginRender();
+	EndRender();
+}
+
+void CGame::BeginRender()
+{
+	DeviceContext->OMSetRenderTargets(1, RenderTargetView.GetAddressOf(), nullptr);
+
+	constexpr std::array ClearColor {0.0f, 0.0f, 0.0f, 0.0f};
+	DeviceContext->ClearRenderTargetView(RenderTargetView.Get(), ClearColor.data());
+
+	DeviceContext->RSSetViewports(1, &Viewport);
+}
+
+void CGame::EndRender()
+{
+	const HRESULT Result = SwapChain->Present(1, 0);
+	Check(Result);
 }
 
 void CGame::CreateDeviceAndSwapChain()
