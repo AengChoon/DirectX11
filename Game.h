@@ -31,14 +31,17 @@ private:
 
 	uint32 Height;
 
+	/** Device & SwapChain */
 	Microsoft::WRL::ComPtr<ID3D11Device> Device;
 
 	Microsoft::WRL::ComPtr<ID3D11DeviceContext> DeviceContext;
 
 	Microsoft::WRL::ComPtr<IDXGISwapChain> SwapChain;
 
+	/** RenderTargetView */
 	Microsoft::WRL::ComPtr<ID3D11RenderTargetView> RenderTargetView;
 
+	/** Misc */
 	D3D11_VIEWPORT Viewport;
 };
 
