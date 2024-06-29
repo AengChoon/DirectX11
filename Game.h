@@ -14,11 +14,19 @@ public:
 	void Render();
 
 private:
+	void CreateDeviceAndSwapChain();
+
+private:
 	HWND WindowHandle;
 
 	uint32 Width;
 
 	uint32 Height;
 
+	Microsoft::WRL::ComPtr<ID3D11Device> Device;
+
+	Microsoft::WRL::ComPtr<ID3D11DeviceContext> DeviceContext;
+
+	Microsoft::WRL::ComPtr<IDXGISwapChain> SwapChain;
 };
 
