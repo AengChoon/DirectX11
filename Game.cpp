@@ -47,7 +47,7 @@ void CGame::CreateDeviceAndSwapChain()
 	SwapChainDesc.Windowed = true;
 	SwapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
 
-	HRESULT Result = ::D3D11CreateDeviceAndSwapChain
+	const HRESULT Result = ::D3D11CreateDeviceAndSwapChain
 	(
 		nullptr,
 		D3D_DRIVER_TYPE_HARDWARE,
@@ -62,4 +62,6 @@ void CGame::CreateDeviceAndSwapChain()
 		nullptr,
 		DeviceContext.GetAddressOf()
 	);
+
+	Check(Result);
 }

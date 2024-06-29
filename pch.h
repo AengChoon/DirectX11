@@ -29,3 +29,6 @@
 #else
 #pragma comment(lib, "DirectXTex\\DirectXTex_Release.lib")
 #endif
+
+/** Macro */
+#define Check(HRESULT) assert(SUCCEEDED(HRESULT))
