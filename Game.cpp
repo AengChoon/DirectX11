@@ -2,9 +2,7 @@
 #include "Game.h"
 
 CGame::CGame()
-	: WindowHandle(nullptr)
-	, Width(0)
-	, Height(0)
+	: WindowHandle(nullptr), Width(0), Height(0), Viewport()
 {
 }
 
@@ -17,6 +15,10 @@ void CGame::Init(const HWND InWindowHandle)
 	WindowHandle = InWindowHandle;
 	Width = GWindowSizeX;
 	Height = GWindowSizeY;
+
+	CreateDeviceAndSwapChain();
+	CreateRenderTargetView();
+	SetViewport();
 }
 
 void CGame::Update()
@@ -86,4 +88,14 @@ void CGame::CreateRenderTargetView()
 		RenderTargetView.GetAddressOf()
 	);
 	Check(Result);
+}
+
+void CGame::SetViewport()
+{
+	Viewport.TopLeftX = 0.0f;
+	Viewport.TopLeftY = 0.0f;
+	Viewport.Width = static_cast<float>(Width);
+	Viewport.Height = static_cast<float>(Height);
+	Viewport.MinDepth = 0.0f;
+	Viewport.MaxDepth = 1.0f;
 }

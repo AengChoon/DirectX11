@@ -18,6 +18,8 @@ private:
 
 	void CreateRenderTargetView();
 
+	void SetViewport();
+
 private:
 	HWND WindowHandle;
 
@@ -32,5 +34,7 @@ private:
 	Microsoft::WRL::ComPtr<IDXGISwapChain> SwapChain;
 
 	Microsoft::WRL::ComPtr<ID3D11RenderTargetView> RenderTargetView;
+
+	D3D11_VIEWPORT Viewport;
 };
 
