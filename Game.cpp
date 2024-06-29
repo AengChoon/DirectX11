@@ -1,22 +1,22 @@
 #include "pch.h"
 #include "Game.h"
 
-Game::Game()
+CGame::CGame()
 {
 }
 
-Game::~Game()
+CGame::~CGame()
 {
 }
 
-void Game::Init(HWND WindowHandle)
+void CGame::Init(HWND WindowHandle)
 {
 }
 
-void Game::Update()
+void CGame::Update()
 {
 }
 
-void Game::Render()
+void CGame::Render()
 {
 }

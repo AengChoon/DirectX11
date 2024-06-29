@@ -1,11 +1,11 @@
 #pragma once
 
-class Game
+class CGame
 {
 public:
-	Game();
+	CGame();
 
-	~Game();
+	~CGame();
 
 	void Init(HWND WindowHandle);
 
