@@ -19,6 +19,7 @@ void CGame::Init(const HWND InWindowHandle)
 	CreateDeviceAndSwapChain();
 	CreateRenderTargetView();
 	SetViewport();
+	CreateGeometry();
 }
 
 void CGame::Update()
@@ -51,7 +52,6 @@ void CGame::CreateDeviceAndSwapChain()
 {
 	DXGI_SWAP_CHAIN_DESC SwapChainDesc;
 	ZeroMemory(&SwapChainDesc, sizeof(SwapChainDesc));
-
 	SwapChainDesc.BufferDesc.Width = Width;
 	SwapChainDesc.BufferDesc.Height = Height;
 	SwapChainDesc.BufferDesc.RefreshRate.Numerator = 60;
@@ -116,4 +116,36 @@ void CGame::SetViewport()
 	Viewport.Height = static_cast<float>(Height);
 	Viewport.MinDepth = 0.0f;
 	Viewport.MaxDepth = 1.0f;
+}
+
+void CGame::CreateGeometry()
+{
+	Vertices.resize(3);
+
+	Vertices[0].Position = FVector3{-0.5f, -0.5f, 0.0f};
+	Vertices[0].Color = FColor{1.0f, 0.0f, 0.0f, 1.0f};
+
+	Vertices[1].Position = FVector3{0.0f, 0.5f, 0.0f};
+	Vertices[1].Color = FColor{1.0f, 0.0f, 0.0f, 1.0f};
+
+	Vertices[2].Position = FVector3{0.5f, -0.5f, 0.0f};
+	Vertices[2].Color = FColor{1.0f, 0.0f, 0.0f, 1.0f};
+
+	D3D11_BUFFER_DESC BufferDesc;
+	ZeroMemory(&BufferDesc, sizeof(BufferDesc));
+	BufferDesc.Usage = D3D11_USAGE_IMMUTABLE;
+	BufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+	BufferDesc.ByteWidth = static_cast<uint32>(sizeof(FVertex) * Vertices.size());
+
+	D3D11_SUBRESOURCE_DATA SubresourceData;
+	ZeroMemory(&SubresourceData, sizeof(SubresourceData));
+	SubresourceData.pSysMem = Vertices.data();
+
+	const HRESULT Result = Device->CreateBuffer
+	(
+		&BufferDesc,
+		&SubresourceData,
+		VertexBuffer.GetAddressOf()
+	);
+	Check(Result);
 }

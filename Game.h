@@ -24,6 +24,8 @@ private:
 
 	void SetViewport();
 
+	void CreateGeometry();
+
 private:
 	HWND WindowHandle;
 
@@ -43,5 +45,10 @@ private:
 
 	/** Misc */
 	D3D11_VIEWPORT Viewport;
+
+	/** Geometry */
+	std::vector<FVertex> Vertices;
+
+	Microsoft::WRL::ComPtr<ID3D11Buffer> VertexBuffer;
 };
 
