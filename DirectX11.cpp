@@ -1,6 +1,7 @@
 #include "pch.h"
-#include "framework.h"
 #include "DirectX11.h"
+#include "framework.h"
+#include "Game.h"
 
 HINSTANCE GInstanceHandle;
 HWND GWindowHandle;
@@ -21,6 +22,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
         return FALSE;
     }
 
+    CGame Game;
+    Game.Init(GWindowHandle);
+
     MSG Msg {};
     while (Msg.message != WM_QUIT)
     {
@@ -31,7 +35,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
         }
         else
         {
-	        
+	        Game.Update();
+            Game.Render();
         }
     }
 
