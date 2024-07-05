@@ -18,6 +18,9 @@
     <Filter Include="Source Files\99. Headers\Windows">
       <UniqueIdentifier>{a68e3f52-b4df-4ea1-b9dd-c464486c1c76}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\98. Shaders">
+      <UniqueIdentifier>{80c09028-5a77-43e3-becf-502465cdbe12}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectX11.h">
@@ -71,5 +74,10 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files\01. Main</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="DefaultShader.hlsl">
+      <Filter>Source Files\98. Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
