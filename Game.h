@@ -1,4 +1,5 @@
 #pragma once
+#include <string_view>
 
 class CGame
 {
@@ -26,6 +27,15 @@ private:
 
 	void CreateGeometry();
 
+	void CreateInputLayout();
+
+	void CreateVertexShader();
+
+	void CreatePixelShader();
+
+	static void LoadShaderFromFile(std::wstring_view Path, std::string_view Name,
+	                               std::string_view Version,Microsoft::WRL::ComPtr<ID3DBlob>& OutBlob);
+
 private:
 	HWND WindowHandle;
 
@@ -50,5 +60,17 @@ private:
 	std::vector<FVertex> Vertices;
 
 	Microsoft::WRL::ComPtr<ID3D11Buffer> VertexBuffer;
+
+	Microsoft::WRL::ComPtr<ID3D11InputLayout> InputLayout;
+
+	/** Vertex Shader */
+	Microsoft::WRL::ComPtr<ID3D11VertexShader> VertexShader;
+
+	Microsoft::WRL::ComPtr<ID3DBlob> VertexShaderBlob;
+
+	/** Pixel Shader */
+	Microsoft::WRL::ComPtr<ID3D11PixelShader> PixelShader;
+
+	Microsoft::WRL::ComPtr<ID3DBlob> PixelShaderBlob;
 };
 

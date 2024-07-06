@@ -20,6 +20,9 @@ void CGame::Init(const HWND InWindowHandle)
 	CreateRenderTargetView();
 	SetViewport();
 	CreateGeometry();
+	CreateVertexShader();
+	CreateInputLayout();
+	CreatePixelShader();
 }
 
 void CGame::Update()
@@ -146,6 +149,91 @@ void CGame::CreateGeometry()
 		&BufferDesc,
 		&SubresourceData,
 		VertexBuffer.GetAddressOf()
+	);
+	Check(Result);
+}
+
+void CGame::CreateInputLayout()
+{
+	std::array InputElementDesc
+	{
+		D3D11_INPUT_ELEMENT_DESC
+		{
+			"POSITION",
+			0,
+			DXGI_FORMAT_R32G32B32_FLOAT,
+			0,
+			0,
+			D3D11_INPUT_PER_VERTEX_DATA,
+			0
+		},
+		D3D11_INPUT_ELEMENT_DESC
+		{
+			"COLOR",
+			0,
+			DXGI_FORMAT_R32G32B32A32_FLOAT,
+			0,
+			12,
+			D3D11_INPUT_PER_VERTEX_DATA,
+			0
+		},
+	};
+
+	const HRESULT Result = Device->CreateInputLayout
+	(
+		InputElementDesc.data(),
+		InputElementDesc.size(),
+		VertexShaderBlob->GetBufferPointer(),
+		VertexShaderBlob->GetBufferSize(),
+		InputLayout.GetAddressOf()
+	);
+	Check(Result);
+}
+
+void CGame::CreateVertexShader()
+{
+	LoadShaderFromFile(L"DefaultShader.hlsl", "VS", "vs_5_0", VertexShaderBlob);
+
+	const HRESULT Result = Device->CreateVertexShader
+	(
+		VertexShaderBlob->GetBufferPointer(),
+		VertexShaderBlob->GetBufferSize(),
+		nullptr,
+		VertexShader.GetAddressOf()
+	);
+	Check(Result);
+}
+
+void CGame::CreatePixelShader()
+{
+	LoadShaderFromFile(L"DefaultShader.hlsl", "PS", "ps_5_0", PixelShaderBlob);
+
+	const HRESULT Result = Device->CreatePixelShader
+	(
+		PixelShaderBlob->GetBufferPointer(),
+		PixelShaderBlob->GetBufferSize(),
+		nullptr,
+		PixelShader.GetAddressOf()
+	);
+	Check(Result);
+}	
+
+void CGame::LoadShaderFromFile(const std::wstring_view Path, const std::string_view Name,
+                               const std::string_view Version, Microsoft::WRL::ComPtr<ID3DBlob>& OutBlob)
+{
+	constexpr uint32 CompileFlag = D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION;
+
+	const HRESULT Result = ::D3DCompileFromFile
+	(
+		Path.data(),
+		nullptr,
+		D3D_COMPILE_STANDARD_FILE_INCLUDE,
+		Name.data(),
+		Version.data(),
+		CompileFlag,
+		0,
+		OutBlob.GetAddressOf(),
+		nullptr
 	);
 	Check(Result);
 }
